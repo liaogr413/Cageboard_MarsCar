@@ -1,6 +1,7 @@
 int  Distance;
 int  Dtime;
-float ultrasonic_distance_9_10() {
+float ultrasonic_distance_9_10() 
+{
   digitalWrite(9, LOW);
   digitalWrite(10, LOW);
   delayMicroseconds(5);
@@ -30,35 +31,37 @@ void colorled13(int number,String c)
 /**
  * 描述此函式...
  */
-void stop2() {
-  analogWrite(5,0);
-  analogWrite(6,0);
+void forward() 
+{
+  digitalWrite(7,LOW);
+  analogWrite(5,120);
+  digitalWrite(4,HIGH);
+  analogWrite(6,115);
 }
 
 /**
  * 描述此函式...
  */
-void forward() {
-  digitalWrite(7,LOW);
-  analogWrite(5,60);
-  digitalWrite(4,HIGH);
-  analogWrite(6,60);
+void stop2() 
+{
+  analogWrite(5,0);
+  analogWrite(6,0);
 }
 
 void setup()
 {
   pinMode(12, INPUT);
-    while ((digitalRead(12) == 1)) {
-  }
-
+    if (digitalRead(12) == 1) 
+	{
+	}
   pinMode( 9 , OUTPUT);
   pinMode( 10 , INPUT);
   strip13.begin();
   strip13.show();
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
+  pinMode(5, OUTPUT);
   pinMode(4, OUTPUT);
+  pinMode(6, OUTPUT);
 }
 
 
@@ -66,30 +69,40 @@ void loop()
 {
     delay(100);
     Dist = ultrasonic_distance_9_10( );
-    if (Dist < 5) {
-      delay(50);
+    if (Dist < 10) 
+	{
+      delay(20);
       stop2();
-      do{
+      for (int count = 0; count < 20; count++) 
+	  {
         colorled13(1,"#cc33cc");
         colorled13(2,"#cc33cc");
         delay(100);
         colorled13(1,"#000000");
         colorled13(2,"#000000");
         delay(100);
-      }while((Dist < 5));
-    } else if (Dist < 10) {
+      }
+    } 
+	else if (Dist < 30) 
+	{
       forward();
       colorled13(1,"#ff0000");
       colorled13(2,"#ff0000");
-    } else if (Dist < 15) {
+    } 
+	else if (Dist < 50) 
+	{
       forward();
       colorled13(1,"#ffff00");
       colorled13(2,"#ffff00");
-    } else if (Dist < 30) {
+    } 
+	else if (Dist < 100) 
+	{
       forward();
       colorled13(1,"#33cc00");
       colorled13(2,"#33cc00");
-    } else {
+    } 
+	else 
+	{
       forward();
       colorled13(1,"#33ccff");
       colorled13(2,"#33ccff");
