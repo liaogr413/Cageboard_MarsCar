@@ -63,10 +63,15 @@ void loop()
       colorled13(1,"#ffff00");
       colorled13(2,"#ffff00");
     } 
-    else 
+    else if (ultrasonic_distance_9_10( ) < 50) 
     {
       colorled13(1,"#33cc00");
       colorled13(2,"#33cc00");
+    }
+  else
+    {
+      colorled13(1,"#33ccff");
+      colorled13(2,"#33ccff");  
     }
 
 }
