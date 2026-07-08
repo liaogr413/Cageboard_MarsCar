@@ -51,19 +51,26 @@ void stop2()
 void setup()
 {
   pinMode(12, INPUT);
-    if (digitalRead(12) == 1) 
-	{
-	}
-  pinMode( 9 , OUTPUT);
-  pinMode( 10 , INPUT);
+    for (int count = 0; count < 2; count++) {
+    colorled13(1,"#33ccff");
+    colorled13(2,"#33ccff");
+    delay(500);
+    colorled13(1,"#000000");
+    colorled13(2,"#000000");
+    delay(500);
+  }
+  while ((digitalRead(12) == 1)) {
+  }
+
   strip13.begin();
   strip13.show();
+  pinMode( 9 , OUTPUT);
+  pinMode( 10 , INPUT);
   pinMode(7, OUTPUT);
   pinMode(5, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(6, OUTPUT);
 }
-
 
 void loop()
 {
